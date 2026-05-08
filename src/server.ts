@@ -66,7 +66,7 @@ async function normalizeCatastrophicSsrResponse(response: Response): Promise<Res
   return brandedErrorResponse();
 }
 
-export default {
+const serverHandler = {
   async fetch(request: Request, env: unknown, ctx: unknown) {
     try {
       const handler = await getServerEntry();
@@ -78,3 +78,8 @@ export default {
     }
   },
 };
+
+export default serverHandler;
+
+// For platforms that expect a direct fetch function export
+export const fetch = serverHandler.fetch;

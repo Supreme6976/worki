@@ -31,7 +31,8 @@ export const requireSupabaseAuth = createMiddleware({ type: 'function' }).server
     const authHeader = request.headers.get('authorization');
 
     if (!authHeader) {
-      throw new Response('Unauthorized: No authorization header provided', { status: 401 });
+      console.warn('Unauthorized: No authorization header provided - Continuing without auth context');
+      return next();
     }
 
     if (!authHeader.startsWith('Bearer ')) {

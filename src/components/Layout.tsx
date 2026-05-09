@@ -119,13 +119,11 @@ export function AuthGate({ children }: { children: ReactNode }) {
   if (loading) return <LogoSpinnerOverlay />;
   if (!user) {
     return (
-      <div className="max-w-md mx-auto p-8 text-center">
-        <p className="text-lg font-semibold mb-3">Za nadaljevanje se moraš prijaviti</p>
-        <div className="flex gap-2 justify-center">
-          <Button onClick={() => { setMode('login'); setOpen(true); }}>Prijava</Button>
-          <Button variant="outline" onClick={() => { setMode('register'); setOpen(true); }}>Registracija</Button>
+      <div className="relative">
+        <div className="bg-yellow-500/10 border-y border-yellow-500/20 p-2 text-center text-xs font-semibold text-yellow-600">
+          Trenutno si v načinu predogleda brez prijave. Nekatere funkcije morda ne bodo delovale.
         </div>
-        <AuthDialog open={open} onOpenChange={setOpen} mode={mode} setMode={setMode} />
+        {children}
       </div>
     );
   }

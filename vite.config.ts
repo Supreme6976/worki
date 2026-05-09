@@ -1,6 +1,7 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
+  base: "/",
   cloudflare: false,
   tanstackStart: {
     // Explicitly set the entries

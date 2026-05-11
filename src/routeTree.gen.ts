@@ -19,6 +19,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as JobsJobIdRouteImport } from './routes/jobs.$jobId'
 import { Route as CheckoutReturnRouteImport } from './routes/checkout.return'
+import { Route as ApiTestRouteImport } from './routes/api/test'
 import { Route as ApiPublicPaymentsWebhookRouteImport } from './routes/api/public/payments/webhook'
 
 const SettingsRoute = SettingsRouteImport.update({
@@ -71,6 +72,11 @@ const CheckoutReturnRoute = CheckoutReturnRouteImport.update({
   path: '/checkout/return',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiTestRoute = ApiTestRouteImport.update({
+  id: '/api/test',
+  path: '/api/test',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPublicPaymentsWebhookRoute =
   ApiPublicPaymentsWebhookRouteImport.update({
     id: '/api/public/payments/webhook',
@@ -87,6 +93,7 @@ export interface FileRoutesByFullPath {
   '/post': typeof PostRoute
   '/privacy': typeof PrivacyRoute
   '/settings': typeof SettingsRoute
+  '/api/test': typeof ApiTestRoute
   '/checkout/return': typeof CheckoutReturnRoute
   '/jobs/$jobId': typeof JobsJobIdRoute
   '/api/public/payments/webhook': typeof ApiPublicPaymentsWebhookRoute
@@ -100,6 +107,7 @@ export interface FileRoutesByTo {
   '/post': typeof PostRoute
   '/privacy': typeof PrivacyRoute
   '/settings': typeof SettingsRoute
+  '/api/test': typeof ApiTestRoute
   '/checkout/return': typeof CheckoutReturnRoute
   '/jobs/$jobId': typeof JobsJobIdRoute
   '/api/public/payments/webhook': typeof ApiPublicPaymentsWebhookRoute
@@ -114,6 +122,7 @@ export interface FileRoutesById {
   '/post': typeof PostRoute
   '/privacy': typeof PrivacyRoute
   '/settings': typeof SettingsRoute
+  '/api/test': typeof ApiTestRoute
   '/checkout/return': typeof CheckoutReturnRoute
   '/jobs/$jobId': typeof JobsJobIdRoute
   '/api/public/payments/webhook': typeof ApiPublicPaymentsWebhookRoute
@@ -129,6 +138,7 @@ export interface FileRouteTypes {
     | '/post'
     | '/privacy'
     | '/settings'
+    | '/api/test'
     | '/checkout/return'
     | '/jobs/$jobId'
     | '/api/public/payments/webhook'
@@ -142,6 +152,7 @@ export interface FileRouteTypes {
     | '/post'
     | '/privacy'
     | '/settings'
+    | '/api/test'
     | '/checkout/return'
     | '/jobs/$jobId'
     | '/api/public/payments/webhook'
@@ -155,6 +166,7 @@ export interface FileRouteTypes {
     | '/post'
     | '/privacy'
     | '/settings'
+    | '/api/test'
     | '/checkout/return'
     | '/jobs/$jobId'
     | '/api/public/payments/webhook'
@@ -169,6 +181,7 @@ export interface RootRouteChildren {
   PostRoute: typeof PostRoute
   PrivacyRoute: typeof PrivacyRoute
   SettingsRoute: typeof SettingsRoute
+  ApiTestRoute: typeof ApiTestRoute
   CheckoutReturnRoute: typeof CheckoutReturnRoute
   JobsJobIdRoute: typeof JobsJobIdRoute
   ApiPublicPaymentsWebhookRoute: typeof ApiPublicPaymentsWebhookRoute
@@ -246,6 +259,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CheckoutReturnRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/test': {
+      id: '/api/test'
+      path: '/api/test'
+      fullPath: '/api/test'
+      preLoaderRoute: typeof ApiTestRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/payments/webhook': {
       id: '/api/public/payments/webhook'
       path: '/api/public/payments/webhook'
@@ -265,6 +285,7 @@ const rootRouteChildren: RootRouteChildren = {
   PostRoute: PostRoute,
   PrivacyRoute: PrivacyRoute,
   SettingsRoute: SettingsRoute,
+  ApiTestRoute: ApiTestRoute,
   CheckoutReturnRoute: CheckoutReturnRoute,
   JobsJobIdRoute: JobsJobIdRoute,
   ApiPublicPaymentsWebhookRoute: ApiPublicPaymentsWebhookRoute,
